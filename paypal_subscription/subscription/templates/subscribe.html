@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PayPal Subscription</title>
+</head>
+
+<body>
+
+<h2>Subscribe to Premium Plan</h2>
+
+<div id="paypal-button-container"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=ATmZlORJvxwwl4UpyMP8ba6pn_ZwtDESoIzUbChJyMDy53Mb_rO9EthuIHTIg-IjHkIiEP4e-fAeR9Y2&vault=true&intent=subscription"></script>
+
+<script>
+
+paypal.Buttons({
+
+    createSubscription: function(data, actions) {
+        return actions.subscription.create({
+            'plan_id': 'P-45P70493UB450661RNGZMMXA'
+        });
+    },
+
+    onApprove: function(data, actions) {
+
+        alert("Subscription successful!");
+
+        window.location.href =
+        "/success/?subscriptionID=" + data.subscriptionID;
+    }
+
+}).render('#paypal-button-container');
+
+</script>
+</body>
+</html>
